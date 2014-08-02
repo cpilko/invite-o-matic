@@ -14,6 +14,7 @@
   </head>
 
   <body>
+    <script type="text/x-handlebars" data-template-name="iom">
     <div id="container">
       <div class="inner">
 
@@ -59,6 +60,7 @@
 				<!--
 					TODO: Read values from the form in step 1 and auto-generate these.
 				-->
+				<!--
 				<form action="#" name="step2-form">
 					What is your name? <input type="text" name="your-name" placeholder="John Doe or Johnny's Dad"><br>
 					What is your Scout's name?<input type="text" name="scouts-name" placeholder="Johnny"><br>
@@ -66,6 +68,21 @@
 					What is/was your Scout's team name?<input type="text" name="team-name" placeholder="Cubs"><br>
 					When did your Scout play with this team?<input type="text" name="when" placeholder="this past spring"><br>
 				</form>
+				-->
+				<div id="input-form-area" style="padding:20px;background-color:#f2f2f2;">
+					<label>What is your name?
+					{{input type="text" value=name placeholder="John Doe or Johnny's Dad"}}</label><br>
+					<label>What is your Scout's name?
+					{{input type="text" value=scouts-name placeholder="Johnny"}}</label><br>
+					<label>More than one Scout?
+					{{input type="checkbox" checked=plural-scouts}}</label><br>
+					<label>What is your Pack number?
+					{{input type="text" value=pack-no placeholder="123"}}</label><br>
+					<label>What is/was your Scout's team's name?
+					{{input type="text" value=team-name placeholder="Cubs"}}</label><br>
+					<label>When did your Scout play with this team?
+					{{input type=text value=when-played placeholder="last spring"}}</label><br>
+				</div>
 				
 			<h3><a name="step3" class="anchor" href="#step3"><span class="octicon octicon-link"></span></a>Step 3: Preview and Edit your result.</h3>
 			
@@ -78,21 +95,21 @@
 
 				<h4>Body</h4>
 				<div contenteditable="true" id="email-preview" style="padding:5px;background-color:white;border:1px solid #fcfcfc;color:black;">
-				<p>Hello <span id="team-name">Terrapins</span>!</p>
+				<p>Hello {{team-name}}!</p>
 
-				<p>My son <span id="scouts-name">Teddy<span> enjoyed his time playing with you this past spring, and I wanted to share an activity that he enjoys with all of you: Cub Scouts!</p>
+				<p>My son{{#if plural-scouts}}s{{/if}} {{scouts-name}} enjoyed {{#if plural-scouts}}their{{else}}his{{/if}} time playing with you{{#if when-played}} {{when-played}}{{/if}}, and I wanted to share an activity that {{#if plural-scouts}}they enjoy{{else}}he enjoys{{/if}} with all of you: Cub Scouts!</p>
 
-				<p>The Cub Scouts are holding a Family Fun Day in <strong>Veteran’s Park in Broomall</strong> on <strong>Sunday, September 21 from 1-4pm</strong>. It’s a day where you can enjoy the Cub Scout experience and learn about what it is we do. We’ll have games, crafts, challenge courses and even a chance for everyone to learn some new skills. Admission is Free and everyone is welcome.</p>
+				<p>The Cub Scouts are holding a Family Fun Day in <strong>Veteran’s Park in Broomall</strong> on <strong>Sunday, September 21 from 1-4pm</strong>. It’s a day where you can enjoy the Cub Scout experience and learn about what it is we do. We’ll have games, crafts, challenge courses and even a chance for everyone to learn some new skills. Admission is <strong><u>free</u></strong> and everyone is welcome.</p>
 
-				<p>I will be there with <span id=scouts-name">Teddy</span> at the <span id="pack-no">Pack 151 &amp; 468</span> booth. I hope to see you there!</p>
+				<p>I will be there with {{scouts-name}} at the Pack {{pack-no}} booth. I hope to see you there!</p>
 
 				<p>If you have any questions, please reach out to me, and I’ll do my best to answer them.</p>
 
 				<p>Yours in Scouting,</p>
 
-				<p><span id="your-name">Chris Pilko</span></p>
+				<p>{{name}}</p>
 
-				<p>P.S.: If you aren’t interested, I’m very sorry for bothering you. This is the only email I’m sending you about this. I did not pass your name on to anyone else, and you aren’t on any list.</p>
+				<p>P.S.: If you are not interested, I’m very sorry for bothering you. This is the only email I’m sending you about this. I did not pass your name on to anyone else, and you are not on any list.</p>
 				</div>
 				</div>
 				
@@ -111,6 +128,14 @@
         
       </div>
     </div>
+	
+	</script> <!-- End of Handlebars Template -->
+	
+	<!-- Ember and its dependents -->
+	<script src="js/libs/jquery-1.10.2.js"></script>
+	<script src="js/libs/handlebars-1.1.2.js"></script>
+	<script src="js/libs/ember-1.6.1.js"></script>
+	<script src="js/application.js"></script>
 
 	<!-- Google Analytics -->
 	<script>
