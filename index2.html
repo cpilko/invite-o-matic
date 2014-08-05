@@ -1,0 +1,21 @@
+<html>
+	<head>
+		<title>Test page</title>
+	</head>
+	<body>
+            <script type="text/x-handlebars" data-template-name="_iominput">
+                <p>Hello {{name}}!</p>
+            </script>
+
+            <script type="text/x-handlebars" data-template-name="iom">
+                <h2>{{name}}, Does this work?</h2>
+                {{partial "iominput"}}
+            </script>
+		
+            <!-- Ember and its dependents -->
+            <script src="js/libs/jquery-1.10.2.js"></script>
+            <script src="js/libs/handlebars-v1.3.0.js"></script>
+            <script src="js/libs/ember-1.6.1.js"></script>
+            <script src="js/application.js"></script>
+	</body>
+</html>
